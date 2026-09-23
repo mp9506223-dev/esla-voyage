@@ -276,19 +276,21 @@ footer a{color:#fff}
         <p style="margin-top:20px; font-size:.9rem; color:#7A7568"><span data-i18n="contact.emailLabel"></span> <span id="emailDisplay" data-i18n="common.tbc"></span></p>
       </div>
       <form id="contactForm">
-        <div class="field"><label for="nom" data-i18n="form.name"></label><input id="nom" required></div>
-        <div class="field"><label for="whatsapp" data-i18n="form.wa"></label><input id="whatsapp" required></div>
-        <div class="field"><label for="email" data-i18n="form.email"></label><input id="email" type="email"></div>
+        <input type="hidden" name="_subject" value="Nouvelle demande - ESLA Voyage">
+        <input type="hidden" name="_captcha" value="false">
+        <div class="field"><label for="nom" data-i18n="form.name"></label><input id="nom" name="Nom" required></div>
+        <div class="field"><label for="whatsapp" data-i18n="form.wa"></label><input id="whatsapp" name="WhatsApp" required></div>
+        <div class="field"><label for="email" data-i18n="form.email"></label><input id="email" name="Email" type="email"></div>
         <div class="field"><label for="pays" data-i18n="form.country"></label>
-          <select id="pays">
+          <select id="pays" name="Pays souhaité">
             <option data-i18n="dest.es.name"></option>
             <option data-i18n="dest.ca.name"></option>
             <option data-i18n="dest.us.name"></option>
             <option data-i18n="dest.fr.name"></option>
           </select>
         </div>
-        <div class="field"><label for="domaine" data-i18n="form.field"></label><input id="domaine"></div>
-        <div class="field"><label for="message" data-i18n="form.message"></label><textarea id="message" rows="4"></textarea></div>
+        <div class="field"><label for="domaine" data-i18n="form.field"></label><input id="domaine" name="Domaine recherché"></div>
+        <div class="field"><label for="message" data-i18n="form.message"></label><textarea id="message" name="Message" rows="4"></textarea></div>
         <button type="submit" class="btn btn-gold" style="justify-self:start" data-i18n="form.submit"></button>
         <p id="formMsg"></p>
       </form>
@@ -308,7 +310,7 @@ footer a{color:#fff}
 <script>
 /* ====== À COMPLÉTER PAR ESLA VOYAGE ====== */
 const WHATSAPP_NUMBER = "33757752958";   // Autre numéro possible : "2290128331667"
-const CONTACT_EMAIL   = "";   // ex: "contact@eslavoyage.com"
+const CONTACT_EMAIL   = "mp9506223@gmail.com";
 /* ========================================== */
 
 const I18N = {
@@ -356,8 +358,9 @@ fr:{
 "footer.line1":"Accompagnement pour un projet de travail à l'étranger.",
 "footer.line2":"ESLA Voyage informe et accompagne ses clients ; l'obtention d'un visa, d'un permis de travail ou d'un emploi dépend uniquement des autorités compétentes.",
 "common.tbc":"À compléter",
-"form.msgMailto":"Votre application e-mail va s'ouvrir pour envoyer la demande.",
-"form.msgNoEmail":"Merci ! Pour activer l'envoi automatique, complétez CONTACT_EMAIL en haut du script.",
+"form.sending":"Envoi en cours...",
+"form.msgSuccess":"Merci ! Votre demande a bien été envoyée, nous revenons vers vous rapidement.",
+"form.msgError":"Une erreur est survenue. Merci de réessayer ou de nous écrire directement sur WhatsApp.",
 "wa.noNumber":"Numéro WhatsApp à configurer : ouvrez le fichier et complétez WHATSAPP_NUMBER en haut du script.",
 "wa.prefill":"Bonjour, je souhaite des informations sur un projet de travail à l'étranger."
 },
@@ -405,8 +408,9 @@ es:{
 "footer.line1":"Acompañamiento para un proyecto de trabajo en el extranjero.",
 "footer.line2":"ESLA Voyage informa y acompaña a sus clientes; la obtención de una visa, un permiso de trabajo o un empleo depende únicamente de las autoridades competentes.",
 "common.tbc":"Por completar",
-"form.msgMailto":"Se abrirá tu aplicación de correo para enviar la solicitud.",
-"form.msgNoEmail":"¡Gracias! Para activar el envío automático, completa CONTACT_EMAIL en la parte superior del script.",
+"form.sending":"Enviando...",
+"form.msgSuccess":"¡Gracias! Tu solicitud ha sido enviada, te responderemos pronto.",
+"form.msgError":"Ha ocurrido un error. Intenta de nuevo o escríbenos directamente por WhatsApp.",
 "wa.noNumber":"Número de WhatsApp por configurar: abre el archivo y completa WHATSAPP_NUMBER en la parte superior del script.",
 "wa.prefill":"Hola, quisiera información sobre un proyecto de trabajo en el extranjero."
 },
@@ -454,8 +458,9 @@ en:{
 "footer.line1":"Support for a work-abroad project.",
 "footer.line2":"ESLA Voyage informs and guides its clients; obtaining a visa, work permit or job depends solely on the relevant authorities.",
 "common.tbc":"To be completed",
-"form.msgMailto":"Your email app will open to send the request.",
-"form.msgNoEmail":"Thanks! To enable automatic sending, fill in CONTACT_EMAIL at the top of the script.",
+"form.sending":"Sending...",
+"form.msgSuccess":"Thank you! Your request has been sent, we'll get back to you shortly.",
+"form.msgError":"Something went wrong. Please try again or message us directly on WhatsApp.",
 "wa.noNumber":"WhatsApp number not set up yet: open the file and fill in WHATSAPP_NUMBER at the top of the script.",
 "wa.prefill":"Hello, I'd like information about a work-abroad project."
 }
@@ -509,21 +514,32 @@ document.querySelectorAll('.mobilemenu a').forEach(function(a){
 document.getElementById('contactForm').addEventListener('submit', function(e){
   e.preventDefault();
   var dict = I18N[window.__eslaLang] || I18N.fr;
-  var nom = document.getElementById('nom').value;
-  var whatsapp = document.getElementById('whatsapp').value;
-  var email = document.getElementById('email').value;
-  var pays = document.getElementById('pays').value;
-  var domaine = document.getElementById('domaine').value;
-  var message = document.getElementById('message').value;
-  var body = "Nom/Name: "+nom+"\nWhatsApp: "+whatsapp+"\nE-mail: "+email+"\nPays/Country: "+pays+"\nDomaine/Field: "+domaine+"\nMessage: "+message;
+  var form = e.target;
   var msgEl = document.getElementById('formMsg');
-  if(CONTACT_EMAIL){
-    window.location.href = "mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Demande d'information - "+nom)+"&body="+encodeURIComponent(body);
-    msgEl.textContent = dict["form.msgMailto"];
-  } else {
-    msgEl.textContent = dict["form.msgNoEmail"];
-  }
+  var btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
   msgEl.style.display = "block";
+  msgEl.textContent = dict["form.sending"];
+  fetch("https://formsubmit.co/ajax/mp9506223@gmail.com", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify({
+      "Nom": document.getElementById('nom').value,
+      "WhatsApp": document.getElementById('whatsapp').value,
+      "Email": document.getElementById('email').value,
+      "Pays souhaité": document.getElementById('pays').value,
+      "Domaine recherché": document.getElementById('domaine').value,
+      "Message": document.getElementById('message').value,
+      "_subject": "Nouvelle demande - ESLA Voyage",
+      "_captcha": "false"
+    })
+  }).then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+  .then(function(){
+    msgEl.textContent = dict["form.msgSuccess"];
+    form.reset();
+  }).catch(function(){
+    msgEl.textContent = dict["form.msgError"];
+  }).finally(function(){ btn.disabled = false; });
 });
 </script>
 </body>
