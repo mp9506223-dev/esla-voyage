@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="logo-icône.svg" type="image/svg+xml">
 <title>ESLA Voyage — Travailler à l'étranger, accompagné·e</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,7 +14,7 @@
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth; scroll-padding-top:70px}
+html{scroll-behavior:smooth; scroll-padding-top:76px}
 body{margin:0; font-family:'Inter',sans-serif; color:var(--ink); background:var(--cream); line-height:1.55}
 h1,h2,h3{font-family:'Fraunces',serif; margin:0 0 .4em; color:var(--navy); line-height:1.15}
 p{margin:0 0 1em}
@@ -24,23 +25,31 @@ section{padding:64px 0}
 
 /* NAV */
 header{position:sticky; top:0; z-index:50; background:rgba(246,243,236,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top,0px)}
-nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 20px; gap:12px}
-.logo{font-family:'Fraunces',serif; font-weight:700; font-size:1.3rem; color:var(--navy); text-decoration:none; white-space:nowrap}
-.navlinks{display:none; gap:22px; font-size:.95rem; font-weight:500}
+nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 20px; gap:10px}
+.logo{font-family:'Fraunces',serif; font-weight:700; font-size:1.25rem; color:var(--navy); text-decoration:none; white-space:nowrap}
+.navlinks{display:none; gap:18px; font-size:.92rem; font-weight:500}
 .navlinks a{text-decoration:none}
 .navlinks a:hover{color:var(--teal)}
-@media(min-width:840px){.navlinks{display:flex}}
+@media(min-width:900px){.navlinks{display:flex}}
+.navright{display:flex; align-items:center; gap:8px}
+.langsel{display:flex; gap:4px; border:1px solid var(--line); border-radius:20px; padding:3px}
+.langbtn{border:none; background:none; padding:5px 9px; border-radius:16px; font-size:.8rem; font-weight:600; cursor:pointer; color:var(--navy-2)}
+.langbtn.active{background:var(--navy); color:#fff}
 .burger{display:block; background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--navy)}
-@media(min-width:840px){.burger{display:none}}
+@media(min-width:900px){.burger{display:none}}
 .mobilemenu{display:none; flex-direction:column; padding:0 20px 16px; gap:10px}
 .mobilemenu.open{display:flex}
 .mobilemenu a{text-decoration:none; padding:8px 0; border-bottom:1px solid var(--line)}
 
 /* HERO */
 .hero{background:linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 55%, var(--teal) 100%); color:#fff; position:relative; overflow:hidden}
-.hero .wrap{padding:80px 20px 70px; position:relative; z-index:2}
+.hero .wrap{padding:60px 20px 60px; position:relative; z-index:2; display:grid; gap:36px; grid-template-columns:1fr}
+@media(min-width:840px){.hero .wrap{grid-template-columns:1.2fr .8fr; align-items:center; padding:80px 20px}}
 .hero h1{color:#fff; font-size:clamp(2rem,5vw,3.1rem); max-width:14ch}
 .hero p{color:#E4E9EC; max-width:52ch; font-size:1.08rem}
+.hero-photo{display:flex; justify-content:center}
+.hero-photo img{width:100%; max-width:300px; aspect-ratio:3/4; object-fit:cover; border-radius:6px; border:3px solid rgba(255,255,255,.25); box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.hero-photo-cap{text-align:center; font-size:.85rem; color:#E4E9EC; margin-top:10px}
 .flagstripe{position:absolute; inset:0; opacity:.16; background:
   linear-gradient(90deg, #C60B1E 0%,#C60B1E 25%, #FFC400 25%,#FFC400 50%, #C60B1E 50%,#C60B1E 51%, #fff 51%,#fff 63%, #D80621 63%,#D80621 76%, #002395 76%,#002395 88%, #fff 88%,#fff 94%, #B31942 94%,#B31942 100%);
 }
@@ -76,6 +85,8 @@ nav.wrap{display:flex; align-items:center; justify-content:space-between; paddin
 .steps{counter-reset:step; display:grid; gap:22px}
 .step{display:flex; gap:16px; align-items:flex-start}
 .step::before{counter-increment:step; content:counter(step); flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:600}
+.step h3{margin-bottom:2px; font-size:1.05rem}
+.step p{margin:0}
 
 /* TESTIMONIALS */
 .testi-grid{display:grid; gap:16px; grid-template-columns:1fr}
@@ -106,75 +117,90 @@ footer a{color:#fff}
 
 <header>
   <nav class="wrap">
-    <a href="#accueil" class="logo">ESLA Voyage</a>
+    <a href="#accueil" class="logo"><img src="logo-full.svg" alt="ESLA Voyage" style="height:38px; display:block"></a>
     <div class="navlinks">
-      <a href="#destinations">Destinations</a>
-      <a href="#services">Services</a>
-      <a href="#fonctionnement">Fonctionnement</a>
-      <a href="#temoignages">Témoignages</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="#destinations" data-i18n="nav.dest"></a>
+      <a href="#services" data-i18n="nav.services"></a>
+      <a href="#fonctionnement" data-i18n="nav.how"></a>
+      <a href="#temoignages" data-i18n="nav.testi"></a>
+      <a href="#faq" data-i18n="nav.faq"></a>
+      <a href="#contact" data-i18n="nav.contact"></a>
     </div>
-    <button class="burger" id="burgerBtn" aria-label="Menu">☰</button>
+    <div class="navright">
+      <div class="langsel">
+        <button class="langbtn" data-lang="fr">FR</button>
+        <button class="langbtn" data-lang="es">ES</button>
+        <button class="langbtn" data-lang="en">EN</button>
+      </div>
+      <button class="burger" id="burgerBtn" aria-label="Menu">☰</button>
+    </div>
   </nav>
   <div class="mobilemenu" id="mobileMenu">
-    <a href="#destinations">Destinations</a>
-    <a href="#services">Services</a>
-    <a href="#fonctionnement">Fonctionnement</a>
-    <a href="#temoignages">Témoignages</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
+    <a href="#destinations" data-i18n="nav.dest"></a>
+    <a href="#services" data-i18n="nav.services"></a>
+    <a href="#fonctionnement" data-i18n="nav.how"></a>
+    <a href="#temoignages" data-i18n="nav.testi"></a>
+    <a href="#faq" data-i18n="nav.faq"></a>
+    <a href="#contact" data-i18n="nav.contact"></a>
   </div>
 </header>
 
 <section class="hero" id="accueil">
   <div class="flagstripe"></div>
   <div class="wrap">
-    <p class="eyebrow" style="color:#F1D488">Espagne · Canada · États-Unis · France</p>
-    <h1>Construisons ensemble votre projet de travail à l'étranger</h1>
-    <p>ESLA Voyage accompagne chaque étape de votre départ : compréhension des démarches, préparation du dossier et suivi jusqu'à votre projet professionnel à l'étranger.</p>
-    <div class="cta-row">
-      <a href="#destinations" class="btn btn-gold">Découvrir nos opportunités</a>
-      <a href="#" id="heroWaBtn" class="btn btn-whatsapp">💬 Nous contacter sur WhatsApp</a>
+    <div>
+      <p class="eyebrow" style="color:#F1D488">Espagne · Canada · États-Unis · France</p>
+      <h1 data-i18n="hero.title"></h1>
+      <p data-i18n="hero.text"></p>
+      <div class="cta-row">
+        <a href="#destinations" class="btn btn-gold" data-i18n="hero.cta1"></a>
+        <a href="#" id="heroWaBtn" class="btn btn-whatsapp" data-i18n="hero.cta2"></a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div>
+        <img src="conseillere.jpg" alt="Conseillère ESLA Voyage">
+        <p class="hero-photo-cap" data-i18n="hero.photoCap"></p>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="destinations">
   <div class="wrap">
-    <p class="eyebrow">Nos destinations</p>
-    <h2>Quatre pays, des opportunités variées</h2>
+    <p class="eyebrow" data-i18n="dest.eyebrow"></p>
+    <h2 data-i18n="dest.title"></h2>
     <div class="grid4">
       <div class="dest">
         <div class="dest-top dest-es"></div>
         <div class="dest-body">
-          <h3>🇪🇸 Espagne</h3>
-          <p>Un marché du travail actif dans plusieurs secteurs, avec des démarches administratives que nous vous aidons à comprendre.</p>
-          <div class="tags"><span class="tag">Hôtellerie</span><span class="tag">Agriculture</span><span class="tag">Construction</span><span class="tag">Nettoyage</span></div>
+          <h3>🇪🇸 <span data-i18n="dest.es.name"></span></h3>
+          <p data-i18n="dest.es.text"></p>
+          <div class="tags"><span class="tag" data-i18n="sector.hotel"></span><span class="tag" data-i18n="sector.agri"></span><span class="tag" data-i18n="sector.constr"></span><span class="tag" data-i18n="sector.clean"></span></div>
         </div>
       </div>
       <div class="dest">
         <div class="dest-top dest-ca"></div>
         <div class="dest-body">
-          <h3>🇨🇦 Canada</h3>
-          <p>Des programmes de travail encadrés selon les provinces et les secteurs, avec des exigences propres à chaque situation.</p>
-          <div class="tags"><span class="tag">Logistique</span><span class="tag">Construction</span><span class="tag">Mécanique</span><span class="tag">Entretien</span></div>
+          <h3>🇨🇦 <span data-i18n="dest.ca.name"></span></h3>
+          <p data-i18n="dest.ca.text"></p>
+          <div class="tags"><span class="tag" data-i18n="sector.logi"></span><span class="tag" data-i18n="sector.constr"></span><span class="tag" data-i18n="sector.mecha"></span><span class="tag" data-i18n="sector.maint"></span></div>
         </div>
       </div>
       <div class="dest">
         <div class="dest-top dest-us"></div>
         <div class="dest-body">
-          <h3>🇺🇸 États-Unis</h3>
-          <p>Des opportunités selon les visas de travail disponibles, encadrées par les autorités américaines compétentes.</p>
-          <div class="tags"><span class="tag">Cuisine</span><span class="tag">Hôtellerie</span><span class="tag">Couture</span><span class="tag">Agriculture</span></div>
+          <h3>🇺🇸 <span data-i18n="dest.us.name"></span></h3>
+          <p data-i18n="dest.us.text"></p>
+          <div class="tags"><span class="tag" data-i18n="sector.cook"></span><span class="tag" data-i18n="sector.hotel"></span><span class="tag" data-i18n="sector.sewing"></span><span class="tag" data-i18n="sector.agri"></span></div>
         </div>
       </div>
       <div class="dest">
         <div class="dest-top dest-fr"></div>
         <div class="dest-body">
-          <h3>🇫🇷 France</h3>
-          <p>Des secteurs qui recrutent régulièrement, avec un accompagnement adapté aux démarches françaises.</p>
-          <div class="tags"><span class="tag">Construction</span><span class="tag">Nettoyage</span><span class="tag">Logistique</span><span class="tag">Cuisine</span></div>
+          <h3>🇫🇷 <span data-i18n="dest.fr.name"></span></h3>
+          <p data-i18n="dest.fr.text"></p>
+          <div class="tags"><span class="tag" data-i18n="sector.constr"></span><span class="tag" data-i18n="sector.clean"></span><span class="tag" data-i18n="sector.logi"></span><span class="tag" data-i18n="sector.cook"></span></div>
         </div>
       </div>
     </div>
@@ -183,82 +209,87 @@ footer a{color:#fff}
 
 <section id="services" style="background:#fff">
   <div class="wrap">
-    <p class="eyebrow">Nos services</p>
-    <h2>Un accompagnement clair, à chaque étape</h2>
+    <p class="eyebrow" data-i18n="serv.eyebrow"></p>
+    <h2 data-i18n="serv.title"></h2>
     <div class="services-list">
-      <div class="service"><h3>Accompagnement du projet</h3><p>Orientation selon votre profil, vos compétences et vos objectifs à l'étranger.</p></div>
-      <div class="service"><h3>Documents nécessaires</h3><p>Explication des pièces à réunir selon votre situation et le pays choisi.</p></div>
-      <div class="service"><h3>Démarches administratives</h3><p>Aide à la préparation du dossier : visa, permis de travail, passeport et autres documents.</p></div>
-      <div class="service"><h3>Information visas &amp; permis</h3><p>Explications claires sur les conditions et procédures en vigueur.</p></div>
-      <div class="service"><h3>Orientation logement</h3><p>Conseils sur les solutions de logement, lorsque cette possibilité existe.</p></div>
-      <div class="service"><h3>Suivi du dossier</h3><p>Un accompagnement tout au long de votre projet, jusqu'à la prochaine étape.</p></div>
+      <div class="service"><h3 data-i18n="serv.s1.t"></h3><p data-i18n="serv.s1.d"></p></div>
+      <div class="service"><h3 data-i18n="serv.s2.t"></h3><p data-i18n="serv.s2.d"></p></div>
+      <div class="service"><h3 data-i18n="serv.s3.t"></h3><p data-i18n="serv.s3.d"></p></div>
+      <div class="service"><h3 data-i18n="serv.s4.t"></h3><p data-i18n="serv.s4.d"></p></div>
+      <div class="service"><h3 data-i18n="serv.s5.t"></h3><p data-i18n="serv.s5.d"></p></div>
+      <div class="service"><h3 data-i18n="serv.s6.t"></h3><p data-i18n="serv.s6.d"></p></div>
     </div>
-    <div class="notice">⚠️ ESLA Voyage vous accompagne et vous informe, mais ne délivre aucun visa ni permis de travail. Ces décisions appartiennent uniquement aux autorités compétentes de chaque pays.</div>
+    <div class="notice" data-i18n="serv.notice"></div>
   </div>
 </section>
 
 <section id="fonctionnement">
   <div class="wrap">
-    <p class="eyebrow">Comment ça fonctionne</p>
-    <h2>Six étapes, un accompagnement continu</h2>
+    <p class="eyebrow" data-i18n="how.eyebrow"></p>
+    <h2 data-i18n="how.title"></h2>
     <div class="steps">
-      <div class="step"><div><h3 style="margin-bottom:2px; font-size:1.05rem">Prise de contact</h3><p style="margin:0">Vous nous contactez par WhatsApp ou via le formulaire.</p></div></div>
-      <div class="step"><div><h3 style="margin-bottom:2px; font-size:1.05rem">Étude du profil</h3><p style="margin:0">Nous échangeons sur votre situation, vos compétences et vos souhaits.</p></div></div>
-      <div class="step"><div><h3 style="margin-bottom:2px; font-size:1.05rem">Présentation des opportunités</h3><p style="margin:0">Nous vous présentons les options disponibles selon votre profil.</p></div></div>
-      <div class="step"><div><h3 style="margin-bottom:2px; font-size:1.05rem">Préparation du dossier</h3><p style="margin:0">Nous vous aidons à réunir et organiser les documents nécessaires.</p></div></div>
-      <div class="step"><div><h3 style="margin-bottom:2px; font-size:1.05rem">Démarches administratives</h3><p style="margin:0">Accompagnement dans les procédures liées au pays choisi.</p></div></div>
-      <div class="step"><div><h3 style="margin-bottom:2px; font-size:1.05rem">Suivi du projet</h3><p style="margin:0">Nous restons présents jusqu'à la prochaine étape de votre parcours.</p></div></div>
+      <div class="step"><div><h3 data-i18n="how.s1.t"></h3><p data-i18n="how.s1.d"></p></div></div>
+      <div class="step"><div><h3 data-i18n="how.s2.t"></h3><p data-i18n="how.s2.d"></p></div></div>
+      <div class="step"><div><h3 data-i18n="how.s3.t"></h3><p data-i18n="how.s3.d"></p></div></div>
+      <div class="step"><div><h3 data-i18n="how.s4.t"></h3><p data-i18n="how.s4.d"></p></div></div>
+      <div class="step"><div><h3 data-i18n="how.s5.t"></h3><p data-i18n="how.s5.d"></p></div></div>
+      <div class="step"><div><h3 data-i18n="how.s6.t"></h3><p data-i18n="how.s6.d"></p></div></div>
     </div>
   </div>
 </section>
 
 <section id="temoignages" style="background:#fff">
   <div class="wrap">
-    <p class="eyebrow">Témoignages &amp; preuves</p>
-    <h2>Des réalisations réelles et vérifiables</h2>
-    <p>Cette section n'affiche que des témoignages authentiques et des preuves vérifiables, publiés avec l'accord des personnes concernées.</p>
+    <p class="eyebrow" data-i18n="testi.eyebrow"></p>
+    <h2 data-i18n="testi.title"></h2>
+    <p data-i18n="testi.text"></p>
     <div class="testi-grid">
-      <div class="testi">📷 Ajouter une preuve réelle ici</div>
-      <div class="testi">🗣️ Ajouter un témoignage réel ici</div>
-      <div class="testi">📄 Ajouter un document réel ici</div>
+      <div class="testi" data-i18n="testi.p1"></div>
+      <div class="testi" data-i18n="testi.p2"></div>
+      <div class="testi" data-i18n="testi.p3"></div>
     </div>
   </div>
 </section>
 
 <section id="faq">
   <div class="wrap">
-    <p class="eyebrow">Questions fréquentes</p>
-    <h2>FAQ</h2>
-    <details><summary>Quels pays proposez-vous ?</summary><p>Nous accompagnons actuellement vers l'Espagne, le Canada, les États-Unis et la France.</p></details>
-    <details><summary>Quels secteurs d'emploi sont concernés ?</summary><p>Construction, mécanique, nettoyage, cuisine, couture, logistique, agriculture, hôtellerie, entretien et d'autres selon les offres disponibles.</p></details>
-    <details><summary>Quels documents sont nécessaires ?</summary><p>Cela dépend de votre situation et du pays visé : passeport, visa, permis de travail et autres documents administratifs. Nous vous orientons selon votre cas.</p></details>
-    <details><summary>Comment se déroule l'accompagnement ?</summary><p>En six étapes : contact, étude du profil, présentation des opportunités, préparation du dossier, démarches administratives et suivi.</p></details>
-    <details><summary>Quels sont les délais ?</summary><p>À compléter selon votre organisation.</p></details>
-    <details><summary>Quels sont les frais de service ?</summary><p>À compléter selon votre grille tarifaire.</p></details>
-    <details><summary>Obtiendrai-je automatiquement un visa ou un emploi ?</summary><p>Non. Nous vous accompagnons et vous informons, mais la décision finale appartient toujours aux autorités compétentes du pays concerné.</p></details>
+    <p class="eyebrow" data-i18n="faq.eyebrow"></p>
+    <h2 data-i18n="faq.title"></h2>
+    <details><summary data-i18n="faq.q1"></summary><p data-i18n="faq.a1"></p></details>
+    <details><summary data-i18n="faq.q2"></summary><p data-i18n="faq.a2"></p></details>
+    <details><summary data-i18n="faq.q3"></summary><p data-i18n="faq.a3"></p></details>
+    <details><summary data-i18n="faq.q4"></summary><p data-i18n="faq.a4"></p></details>
+    <details><summary data-i18n="faq.q5"></summary><p data-i18n="faq.a5"></p></details>
+    <details><summary data-i18n="faq.q6"></summary><p data-i18n="faq.a6"></p></details>
+    <details><summary data-i18n="faq.q7"></summary><p data-i18n="faq.a7"></p></details>
   </div>
 </section>
 
 <section id="contact" style="background:#fff">
   <div class="wrap">
-    <p class="eyebrow">Contact</p>
-    <h2>Parlons de votre projet</h2>
+    <p class="eyebrow" data-i18n="contact.eyebrow"></p>
+    <h2 data-i18n="contact.title"></h2>
     <div class="contact-grid">
       <div>
-        <p>Contactez-nous directement sur WhatsApp ou remplissez le formulaire, nous revenons vers vous rapidement.</p>
-        <a href="#" id="contactWaBtn" class="btn btn-whatsapp">💬 Écrire sur WhatsApp</a>
-        <p style="margin-top:20px; font-size:.9rem; color:#7A7568">E-mail : <span id="emailDisplay">À compléter</span></p>
+        <p data-i18n="contact.text"></p>
+        <a href="#" id="contactWaBtn" class="btn btn-whatsapp" data-i18n="contact.wa"></a>
+        <p style="margin-top:20px; font-size:.9rem; color:#7A7568"><span data-i18n="contact.emailLabel"></span> <span id="emailDisplay" data-i18n="common.tbc"></span></p>
       </div>
       <form id="contactForm">
-        <div class="field"><label for="nom">Nom complet</label><input id="nom" required></div>
-        <div class="field"><label for="whatsapp">Numéro WhatsApp</label><input id="whatsapp" required></div>
-        <div class="field"><label for="email">E-mail</label><input id="email" type="email"></div>
-        <div class="field"><label for="pays">Pays souhaité</label>
-          <select id="pays"><option>Espagne</option><option>Canada</option><option>États-Unis</option><option>France</option></select>
+        <div class="field"><label for="nom" data-i18n="form.name"></label><input id="nom" required></div>
+        <div class="field"><label for="whatsapp" data-i18n="form.wa"></label><input id="whatsapp" required></div>
+        <div class="field"><label for="email" data-i18n="form.email"></label><input id="email" type="email"></div>
+        <div class="field"><label for="pays" data-i18n="form.country"></label>
+          <select id="pays">
+            <option data-i18n="dest.es.name"></option>
+            <option data-i18n="dest.ca.name"></option>
+            <option data-i18n="dest.us.name"></option>
+            <option data-i18n="dest.fr.name"></option>
+          </select>
         </div>
-        <div class="field"><label for="domaine">Domaine de travail recherché</label><input id="domaine"></div>
-        <div class="field"><label for="message">Message</label><textarea id="message" rows="4"></textarea></div>
-        <button type="submit" class="btn btn-gold" style="justify-self:start">Envoyer la demande</button>
+        <div class="field"><label for="domaine" data-i18n="form.field"></label><input id="domaine"></div>
+        <div class="field"><label for="message" data-i18n="form.message"></label><textarea id="message" rows="4"></textarea></div>
+        <button type="submit" class="btn btn-gold" style="justify-self:start" data-i18n="form.submit"></button>
         <p id="formMsg"></p>
       </form>
     </div>
@@ -267,8 +298,8 @@ footer a{color:#fff}
 
 <footer>
   <div class="wrap">
-    <p>© <span id="year"></span> ESLA Voyage — Accompagnement pour un projet de travail à l'étranger.</p>
-    <p style="font-size:.8rem">ESLA Voyage informe et accompagne ses clients ; l'obtention d'un visa, d'un permis de travail ou d'un emploi dépend uniquement des autorités compétentes.</p>
+    <p><span>©</span> <span id="year"></span> ESLA Voyage — <span data-i18n="footer.line1"></span></p>
+    <p style="font-size:.8rem" data-i18n="footer.line2"></p>
   </div>
 </footer>
 
@@ -280,8 +311,178 @@ const WHATSAPP_NUMBER = "33757752958";   // Autre numéro possible : "2290128331
 const CONTACT_EMAIL   = "";   // ex: "contact@eslavoyage.com"
 /* ========================================== */
 
+const I18N = {
+fr:{
+"nav.dest":"Destinations","nav.services":"Services","nav.how":"Fonctionnement","nav.testi":"Témoignages","nav.faq":"FAQ","nav.contact":"Contact",
+"hero.title":"Construisons ensemble votre projet de travail à l'étranger",
+"hero.text":"ESLA Voyage accompagne chaque étape de votre départ : compréhension des démarches, préparation du dossier et suivi jusqu'à votre projet professionnel à l'étranger.",
+"hero.cta1":"Découvrir nos opportunités","hero.cta2":"💬 Nous contacter sur WhatsApp","hero.photoCap":"Votre interlocutrice ESLA Voyage",
+"dest.eyebrow":"Nos destinations","dest.title":"Quatre pays, des opportunités variées",
+"dest.es.name":"Espagne","dest.es.text":"Un marché du travail actif dans plusieurs secteurs, avec des démarches administratives que nous vous aidons à comprendre.",
+"dest.ca.name":"Canada","dest.ca.text":"Des programmes de travail encadrés selon les provinces et les secteurs, avec des exigences propres à chaque situation.",
+"dest.us.name":"États-Unis","dest.us.text":"Des opportunités selon les visas de travail disponibles, encadrées par les autorités américaines compétentes.",
+"dest.fr.name":"France","dest.fr.text":"Des secteurs qui recrutent régulièrement, avec un accompagnement adapté aux démarches françaises.",
+"sector.hotel":"Hôtellerie","sector.agri":"Agriculture","sector.constr":"Construction","sector.clean":"Nettoyage","sector.logi":"Logistique","sector.mecha":"Mécanique","sector.maint":"Entretien","sector.cook":"Cuisine","sector.sewing":"Couture",
+"serv.eyebrow":"Nos services","serv.title":"Un accompagnement clair, à chaque étape",
+"serv.s1.t":"Accompagnement du projet","serv.s1.d":"Orientation selon votre profil, vos compétences et vos objectifs à l'étranger.",
+"serv.s2.t":"Documents nécessaires","serv.s2.d":"Explication des pièces à réunir selon votre situation et le pays choisi.",
+"serv.s3.t":"Démarches administratives","serv.s3.d":"Aide à la préparation du dossier : visa, permis de travail, passeport et autres documents.",
+"serv.s4.t":"Information visas & permis","serv.s4.d":"Explications claires sur les conditions et procédures en vigueur.",
+"serv.s5.t":"Orientation logement","serv.s5.d":"Conseils sur les solutions de logement, lorsque cette possibilité existe.",
+"serv.s6.t":"Suivi du dossier","serv.s6.d":"Un accompagnement tout au long de votre projet, jusqu'à la prochaine étape.",
+"serv.notice":"⚠️ ESLA Voyage vous accompagne et vous informe, mais ne délivre aucun visa ni permis de travail. Ces décisions appartiennent uniquement aux autorités compétentes de chaque pays.",
+"how.eyebrow":"Comment ça fonctionne","how.title":"Six étapes, un accompagnement continu",
+"how.s1.t":"Prise de contact","how.s1.d":"Vous nous contactez par WhatsApp ou via le formulaire.",
+"how.s2.t":"Étude du profil","how.s2.d":"Nous échangeons sur votre situation, vos compétences et vos souhaits.",
+"how.s3.t":"Présentation des opportunités","how.s3.d":"Nous vous présentons les options disponibles selon votre profil.",
+"how.s4.t":"Préparation du dossier","how.s4.d":"Nous vous aidons à réunir et organiser les documents nécessaires.",
+"how.s5.t":"Démarches administratives","how.s5.d":"Accompagnement dans les procédures liées au pays choisi.",
+"how.s6.t":"Suivi du projet","how.s6.d":"Nous restons présents jusqu'à la prochaine étape de votre parcours.",
+"testi.eyebrow":"Témoignages & preuves","testi.title":"Des réalisations réelles et vérifiables",
+"testi.text":"Cette section n'affiche que des témoignages authentiques et des preuves vérifiables, publiés avec l'accord des personnes concernées.",
+"testi.p1":"📷 Ajouter une preuve réelle ici","testi.p2":"🗣️ Ajouter un témoignage réel ici","testi.p3":"📄 Ajouter un document réel ici",
+"faq.eyebrow":"Questions fréquentes","faq.title":"FAQ",
+"faq.q1":"Quels pays proposez-vous ?","faq.a1":"Nous accompagnons actuellement vers l'Espagne, le Canada, les États-Unis et la France.",
+"faq.q2":"Quels secteurs d'emploi sont concernés ?","faq.a2":"Construction, mécanique, nettoyage, cuisine, couture, logistique, agriculture, hôtellerie, entretien et d'autres selon les offres disponibles.",
+"faq.q3":"Quels documents sont nécessaires ?","faq.a3":"Cela dépend de votre situation et du pays visé : passeport, visa, permis de travail et autres documents administratifs. Nous vous orientons selon votre cas.",
+"faq.q4":"Comment se déroule l'accompagnement ?","faq.a4":"En six étapes : contact, étude du profil, présentation des opportunités, préparation du dossier, démarches administratives et suivi.",
+"faq.q5":"Quels sont les délais ?","faq.a5":"À compléter selon votre organisation.",
+"faq.q6":"Quels sont les frais de service ?","faq.a6":"À compléter selon votre grille tarifaire.",
+"faq.q7":"Obtiendrai-je automatiquement un visa ou un emploi ?","faq.a7":"Non. Nous vous accompagnons et vous informons, mais la décision finale appartient toujours aux autorités compétentes du pays concerné.",
+"contact.eyebrow":"Contact","contact.title":"Parlons de votre projet",
+"contact.text":"Contactez-nous directement sur WhatsApp ou remplissez le formulaire, nous revenons vers vous rapidement.",
+"contact.wa":"💬 Écrire sur WhatsApp","contact.emailLabel":"E-mail :",
+"form.name":"Nom complet","form.wa":"Numéro WhatsApp","form.email":"E-mail","form.country":"Pays souhaité","form.field":"Domaine de travail recherché","form.message":"Message","form.submit":"Envoyer la demande",
+"footer.line1":"Accompagnement pour un projet de travail à l'étranger.",
+"footer.line2":"ESLA Voyage informe et accompagne ses clients ; l'obtention d'un visa, d'un permis de travail ou d'un emploi dépend uniquement des autorités compétentes.",
+"common.tbc":"À compléter",
+"form.msgMailto":"Votre application e-mail va s'ouvrir pour envoyer la demande.",
+"form.msgNoEmail":"Merci ! Pour activer l'envoi automatique, complétez CONTACT_EMAIL en haut du script.",
+"wa.noNumber":"Numéro WhatsApp à configurer : ouvrez le fichier et complétez WHATSAPP_NUMBER en haut du script.",
+"wa.prefill":"Bonjour, je souhaite des informations sur un projet de travail à l'étranger."
+},
+es:{
+"nav.dest":"Destinos","nav.services":"Servicios","nav.how":"Cómo funciona","nav.testi":"Testimonios","nav.faq":"Preguntas","nav.contact":"Contacto",
+"hero.title":"Construyamos juntos tu proyecto de trabajo en el extranjero",
+"hero.text":"ESLA Voyage te acompaña en cada etapa de tu salida: comprensión de los trámites, preparación del expediente y seguimiento hasta tu proyecto profesional en el extranjero.",
+"hero.cta1":"Descubrir oportunidades","hero.cta2":"💬 Contáctanos por WhatsApp","hero.photoCap":"Tu asesora en ESLA Voyage",
+"dest.eyebrow":"Nuestros destinos","dest.title":"Cuatro países, oportunidades variadas",
+"dest.es.name":"España","dest.es.text":"Un mercado laboral activo en varios sectores, con trámites administrativos que te ayudamos a entender.",
+"dest.ca.name":"Canadá","dest.ca.text":"Programas de trabajo regulados según las provincias y los sectores, con requisitos propios de cada situación.",
+"dest.us.name":"Estados Unidos","dest.us.text":"Oportunidades según las visas de trabajo disponibles, reguladas por las autoridades estadounidenses competentes.",
+"dest.fr.name":"Francia","dest.fr.text":"Sectores que contratan con regularidad, con un acompañamiento adaptado a los trámites franceses.",
+"sector.hotel":"Hostelería","sector.agri":"Agricultura","sector.constr":"Construcción","sector.clean":"Limpieza","sector.logi":"Logística","sector.mecha":"Mecánica","sector.maint":"Mantenimiento","sector.cook":"Cocina","sector.sewing":"Costura",
+"serv.eyebrow":"Nuestros servicios","serv.title":"Un acompañamiento claro, en cada etapa",
+"serv.s1.t":"Acompañamiento del proyecto","serv.s1.d":"Orientación según tu perfil, tus competencias y tus objetivos en el extranjero.",
+"serv.s2.t":"Documentos necesarios","serv.s2.d":"Explicación de los documentos a reunir según tu situación y el país elegido.",
+"serv.s3.t":"Trámites administrativos","serv.s3.d":"Ayuda en la preparación del expediente: visa, permiso de trabajo, pasaporte y otros documentos.",
+"serv.s4.t":"Información sobre visas y permisos","serv.s4.d":"Explicaciones claras sobre las condiciones y procedimientos vigentes.",
+"serv.s5.t":"Orientación sobre vivienda","serv.s5.d":"Consejos sobre soluciones de alojamiento, cuando esta posibilidad existe.",
+"serv.s6.t":"Seguimiento del expediente","serv.s6.d":"Un acompañamiento durante todo tu proyecto, hasta la siguiente etapa.",
+"serv.notice":"⚠️ ESLA Voyage te acompaña y te informa, pero no emite ninguna visa ni permiso de trabajo. Esas decisiones corresponden únicamente a las autoridades competentes de cada país.",
+"how.eyebrow":"Cómo funciona","how.title":"Seis etapas, un acompañamiento continuo",
+"how.s1.t":"Primer contacto","how.s1.d":"Nos contactas por WhatsApp o mediante el formulario.",
+"how.s2.t":"Estudio del perfil","how.s2.d":"Conversamos sobre tu situación, tus competencias y tus deseos.",
+"how.s3.t":"Presentación de oportunidades","how.s3.d":"Te presentamos las opciones disponibles según tu perfil.",
+"how.s4.t":"Preparación del expediente","how.s4.d":"Te ayudamos a reunir y organizar los documentos necesarios.",
+"how.s5.t":"Trámites administrativos","how.s5.d":"Acompañamiento en los procedimientos según el país elegido.",
+"how.s6.t":"Seguimiento del proyecto","how.s6.d":"Seguimos presentes hasta la siguiente etapa de tu recorrido.",
+"testi.eyebrow":"Testimonios y pruebas","testi.title":"Logros reales y verificables",
+"testi.text":"Esta sección solo muestra testimonios auténticos y pruebas verificables, publicados con el consentimiento de las personas involucradas.",
+"testi.p1":"📷 Añadir una prueba real aquí","testi.p2":"🗣️ Añadir un testimonio real aquí","testi.p3":"📄 Añadir un documento real aquí",
+"faq.eyebrow":"Preguntas frecuentes","faq.title":"FAQ",
+"faq.q1":"¿Qué países ofrecen?","faq.a1":"Actualmente acompañamos hacia España, Canadá, Estados Unidos y Francia.",
+"faq.q2":"¿Qué sectores de empleo están disponibles?","faq.a2":"Construcción, mecánica, limpieza, cocina, costura, logística, agricultura, hostelería, mantenimiento y otros según las ofertas disponibles.",
+"faq.q3":"¿Qué documentos son necesarios?","faq.a3":"Depende de tu situación y del país elegido: pasaporte, visa, permiso de trabajo y otros documentos administrativos. Te orientamos según tu caso.",
+"faq.q4":"¿Cómo se desarrolla el acompañamiento?","faq.a4":"En seis etapas: contacto, estudio del perfil, presentación de oportunidades, preparación del expediente, trámites administrativos y seguimiento.",
+"faq.q5":"¿Cuáles son los plazos?","faq.a5":"Por completar según su organización.",
+"faq.q6":"¿Cuáles son los honorarios del servicio?","faq.a6":"Por completar según su tarifa.",
+"faq.q7":"¿Obtendré automáticamente una visa o un empleo?","faq.a7":"No. Te acompañamos y te informamos, pero la decisión final siempre corresponde a las autoridades competentes del país en cuestión.",
+"contact.eyebrow":"Contacto","contact.title":"Hablemos de tu proyecto",
+"contact.text":"Contáctanos directamente por WhatsApp o completa el formulario; te responderemos rápidamente.",
+"contact.wa":"💬 Escribir por WhatsApp","contact.emailLabel":"Correo electrónico:",
+"form.name":"Nombre completo","form.wa":"Número de WhatsApp","form.email":"Correo electrónico","form.country":"País deseado","form.field":"Área de trabajo buscada","form.message":"Mensaje","form.submit":"Enviar solicitud",
+"footer.line1":"Acompañamiento para un proyecto de trabajo en el extranjero.",
+"footer.line2":"ESLA Voyage informa y acompaña a sus clientes; la obtención de una visa, un permiso de trabajo o un empleo depende únicamente de las autoridades competentes.",
+"common.tbc":"Por completar",
+"form.msgMailto":"Se abrirá tu aplicación de correo para enviar la solicitud.",
+"form.msgNoEmail":"¡Gracias! Para activar el envío automático, completa CONTACT_EMAIL en la parte superior del script.",
+"wa.noNumber":"Número de WhatsApp por configurar: abre el archivo y completa WHATSAPP_NUMBER en la parte superior del script.",
+"wa.prefill":"Hola, quisiera información sobre un proyecto de trabajo en el extranjero."
+},
+en:{
+"nav.dest":"Destinations","nav.services":"Services","nav.how":"How it works","nav.testi":"Testimonials","nav.faq":"FAQ","nav.contact":"Contact",
+"hero.title":"Let's build your work-abroad project together",
+"hero.text":"ESLA Voyage supports you at every step of your journey: understanding the paperwork, preparing your file, and following up until your project abroad succeeds.",
+"hero.cta1":"Discover opportunities","hero.cta2":"💬 Contact us on WhatsApp","hero.photoCap":"Your ESLA Voyage advisor",
+"dest.eyebrow":"Our destinations","dest.title":"Four countries, many opportunities",
+"dest.es.name":"Spain","dest.es.text":"An active job market across several sectors, with administrative steps we help you understand.",
+"dest.ca.name":"Canada","dest.ca.text":"Regulated work programs that vary by province and sector, each with its own requirements.",
+"dest.us.name":"United States","dest.us.text":"Opportunities depending on available work visas, regulated by the relevant US authorities.",
+"dest.fr.name":"France","dest.fr.text":"Sectors that hire regularly, with support tailored to French procedures.",
+"sector.hotel":"Hospitality","sector.agri":"Agriculture","sector.constr":"Construction","sector.clean":"Cleaning","sector.logi":"Logistics","sector.mecha":"Mechanics","sector.maint":"Maintenance","sector.cook":"Cooking","sector.sewing":"Sewing",
+"serv.eyebrow":"Our services","serv.title":"Clear support, every step of the way",
+"serv.s1.t":"Project guidance","serv.s1.d":"Guidance based on your profile, skills and goals abroad.",
+"serv.s2.t":"Required documents","serv.s2.d":"Explanation of the documents to gather depending on your situation and chosen country.",
+"serv.s3.t":"Administrative steps","serv.s3.d":"Help preparing your file: visa, work permit, passport and other documents.",
+"serv.s4.t":"Visa & permit information","serv.s4.d":"Clear explanations of current conditions and procedures.",
+"serv.s5.t":"Housing guidance","serv.s5.d":"Advice on housing solutions, where this option exists.",
+"serv.s6.t":"File follow-up","serv.s6.d":"Support throughout your project, up to the next step.",
+"serv.notice":"⚠️ ESLA Voyage guides and informs you, but does not issue any visa or work permit. Those decisions belong solely to each country's competent authorities.",
+"how.eyebrow":"How it works","how.title":"Six steps, continuous support",
+"how.s1.t":"First contact","how.s1.d":"You reach us via WhatsApp or the form.",
+"how.s2.t":"Profile review","how.s2.d":"We discuss your situation, skills and goals.",
+"how.s3.t":"Opportunities presented","how.s3.d":"We present the options available for your profile.",
+"how.s4.t":"File preparation","how.s4.d":"We help you gather and organize the required documents.",
+"how.s5.t":"Administrative steps","how.s5.d":"Support with the procedures for your chosen country.",
+"how.s6.t":"Project follow-up","how.s6.d":"We stay with you until the next step of your journey.",
+"testi.eyebrow":"Testimonials & proof","testi.title":"Real, verifiable results",
+"testi.text":"This section only shows authentic testimonials and verifiable proof, published with the consent of the people involved.",
+"testi.p1":"📷 Add real proof here","testi.p2":"🗣️ Add a real testimonial here","testi.p3":"📄 Add a real document here",
+"faq.eyebrow":"Frequently asked questions","faq.title":"FAQ",
+"faq.q1":"Which countries do you cover?","faq.a1":"We currently support projects toward Spain, Canada, the United States and France.",
+"faq.q2":"Which job sectors are involved?","faq.a2":"Construction, mechanics, cleaning, cooking, sewing, logistics, agriculture, hospitality, maintenance and others depending on available openings.",
+"faq.q3":"What documents are needed?","faq.a3":"It depends on your situation and target country: passport, visa, work permit and other administrative documents. We guide you based on your case.",
+"faq.q4":"How does the support process work?","faq.a4":"Six steps: contact, profile review, opportunities presented, file preparation, administrative steps and follow-up.",
+"faq.q5":"What are the timelines?","faq.a5":"To be completed according to your organization.",
+"faq.q6":"What are the service fees?","faq.a6":"To be completed according to your pricing.",
+"faq.q7":"Will I automatically get a visa or a job?","faq.a7":"No. We guide and inform you, but the final decision always belongs to the relevant country's competent authorities.",
+"contact.eyebrow":"Contact","contact.title":"Let's talk about your project",
+"contact.text":"Contact us directly on WhatsApp or fill out the form; we'll get back to you quickly.",
+"contact.wa":"💬 Message us on WhatsApp","contact.emailLabel":"Email:",
+"form.name":"Full name","form.wa":"WhatsApp number","form.email":"Email","form.country":"Desired country","form.field":"Job field you're looking for","form.message":"Message","form.submit":"Send request",
+"footer.line1":"Support for a work-abroad project.",
+"footer.line2":"ESLA Voyage informs and guides its clients; obtaining a visa, work permit or job depends solely on the relevant authorities.",
+"common.tbc":"To be completed",
+"form.msgMailto":"Your email app will open to send the request.",
+"form.msgNoEmail":"Thanks! To enable automatic sending, fill in CONTACT_EMAIL at the top of the script.",
+"wa.noNumber":"WhatsApp number not set up yet: open the file and fill in WHATSAPP_NUMBER at the top of the script.",
+"wa.prefill":"Hello, I'd like information about a work-abroad project."
+}
+};
+
+function applyLang(lang){
+  const dict = I18N[lang] || I18N.fr;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key = el.getAttribute('data-i18n');
+    if(dict[key]) el.textContent = dict[key];
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.langbtn').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+  try{ localStorage.setItem('esla_lang', lang); }catch(e){}
+  window.__eslaLang = lang;
+}
+document.querySelectorAll('.langbtn').forEach(function(b){
+  b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+});
+var savedLang = 'fr';
+try{ savedLang = localStorage.getItem('esla_lang') || 'fr'; }catch(e){}
+applyLang(savedLang);
+
 document.getElementById('year').textContent = new Date().getFullYear();
-if(CONTACT_EMAIL){ document.getElementById('emailDisplay').textContent = CONTACT_EMAIL; }
+if(CONTACT_EMAIL){ document.getElementById('emailDisplay').removeAttribute('data-i18n'); document.getElementById('emailDisplay').textContent = CONTACT_EMAIL; }
 
 function waLink(prefill){
   if(!WHATSAPP_NUMBER) return null;
@@ -291,9 +492,10 @@ function waLink(prefill){
   var el = document.getElementById(id);
   el.addEventListener('click', function(e){
     e.preventDefault();
-    var link = waLink("Bonjour, je souhaite des informations sur un projet de travail à l'étranger.");
+    var dict = I18N[window.__eslaLang] || I18N.fr;
+    var link = waLink(dict["wa.prefill"]);
     if(link){ window.open(link, "_blank"); }
-    else{ alert("Numéro WhatsApp à configurer : ouvrez le fichier et complétez WHATSAPP_NUMBER en haut du script."); }
+    else{ alert(dict["wa.noNumber"]); }
   });
 });
 
@@ -306,19 +508,20 @@ document.querySelectorAll('.mobilemenu a').forEach(function(a){
 
 document.getElementById('contactForm').addEventListener('submit', function(e){
   e.preventDefault();
+  var dict = I18N[window.__eslaLang] || I18N.fr;
   var nom = document.getElementById('nom').value;
   var whatsapp = document.getElementById('whatsapp').value;
   var email = document.getElementById('email').value;
   var pays = document.getElementById('pays').value;
   var domaine = document.getElementById('domaine').value;
   var message = document.getElementById('message').value;
-  var body = "Nom: "+nom+"\nWhatsApp: "+whatsapp+"\nE-mail: "+email+"\nPays souhaité: "+pays+"\nDomaine: "+domaine+"\nMessage: "+message;
+  var body = "Nom/Name: "+nom+"\nWhatsApp: "+whatsapp+"\nE-mail: "+email+"\nPays/Country: "+pays+"\nDomaine/Field: "+domaine+"\nMessage: "+message;
   var msgEl = document.getElementById('formMsg');
   if(CONTACT_EMAIL){
     window.location.href = "mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Demande d'information - "+nom)+"&body="+encodeURIComponent(body);
-    msgEl.textContent = "Votre application e-mail va s'ouvrir pour envoyer la demande.";
+    msgEl.textContent = dict["form.msgMailto"];
   } else {
-    msgEl.textContent = "Merci ! Pour activer l'envoi automatique, complétez CONTACT_EMAIL en haut du script (variable CONTACT_EMAIL).";
+    msgEl.textContent = dict["form.msgNoEmail"];
   }
   msgEl.style.display = "block";
 });
